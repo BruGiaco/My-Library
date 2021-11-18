@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://wwww.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>My library</title>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+                    <link href="../static/styles/css-styles.css" th:href="@{/styles/css-styles.css}" rel="stylesheet"/>
+                    </head>
+                    <body>
+                        <nav th:replace="Fragment.html :: nav"></nav>
+                        <div>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${done} != null">
+                                <div th:text="${done}"></div>
+                            </div>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${error} != null">
+                                <div th:text="${error}"></div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </div> 
+                        <h1 class="lines-effect">Borrows</h1>
+                        <div th:if="${borrows.isEmpty()}" class="container-mge"> 
+                            <h3>No hay prestamos cargados.</h3>
+                        </div>
+                        <div class="bt-add"> <a class="btn btn-success btn-lg" th:href="@{/borrow/create}">Add borrow</a> </div>
+                        <div class="table" th:unless="${borrows.isEmpty()}">
+                            <table class="table table-bordered table-dark">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Borrow Date</th>
+                                        <th scope="col">Devolution Date</th>
+                                        <th scope="col">Book</th>
+                                        <th scope="col">Customer</th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="borrow:${borrows}">
+                                        <th th:text="${borrow.id}"></th>
+                                        <td th:text="${borrow.borrowDate}"></td>
+                                        <td th:text="${borrow.devDate}"></td>
+                                        <td th:text="${borrow.book.title}"></td>
+                                        <td th:text="${borrow.customer.name}"></td>
+                                        <td><a class="btn btn-light" th:href="@{/borrow/modify/__${borrow.id}__}">Edit</a></td>
+                                        <td><a class="btn btn-danger" th:href="@{/borrow/delete/__${borrow.id}__}">Delete</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <footer th:replace="Fragment.html :: footer"></footer>
+                    </body>
+                    </html>

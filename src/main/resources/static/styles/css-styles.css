@@ -1,0 +1,102 @@
+body{
+    min-height: 100vh;
+    position: relative;
+    font-family: sans-serif;
+    background-image: url("https://www.incimages.com/uploaded_files/image/1920x1080/getty_655998316_2000149920009280219_363765.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    text-align: center;
+}
+.row{
+    margin-left: 30px;
+    margin-bottom: 50px;
+    margin-top: 20px;
+}
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif;
+}
+#welcome {
+    padding: 30px 0px;
+}
+h1{
+    color: black;
+    background-color: lightblue;
+    padding: 10px;
+    border: 5px solid black;
+    margin-top: 10px;
+    display: inline-block;
+    position: relative;
+    border-radius: 15px;
+}
+h1::after,h1::before{
+    content:'';
+    position: absolute;
+    width: 120px;
+    height: 5px;
+    background-color: black;
+    top:0.6em;
+    transform: scale(0);
+    transition: all 0.2s ease-in;
+}
+h1:hover::before,h1:hover::after{
+    transform: scale(1);
+}
+h1:before{
+    left: -140px;
+}
+h1:after{
+    right: -140px;
+}
+h3{
+    margin-top: 10px;
+    text-decoration: underline;
+    text-align: center;
+    font-family: sans-serif;
+    color: black;
+}
+.table {
+    margin-top: 10px;
+    position: fixed;
+    width: 80%;
+    caption-side: top;
+    margin-left: 50px;
+    margin-right: auto;
+    border-collapse: collapse;
+}
+
+.bt-add{
+    text-align: center;
+    margin-top: 30px;
+}
+.frag{
+    color: black;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    padding: 1em 0;
+    width: 100%;
+}
+.formu{
+    border-radius: 20px;
+    width: 40%;
+    background-color: whitesmoke;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+}
+.form-book label{
+    margin-top: 5px;
+}
+.formu button{
+    margin-top: 10px;
+}

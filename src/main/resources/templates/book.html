@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://wwww.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>My Library</title>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+                    <link href="../static/styles/css-styles.css" th:href="@{/styles/css-styles.css}" rel="stylesheet"/>
+                    </head>
+                    <body>
+                        <nav th:replace="Fragment.html :: nav"></nav>
+                        <div>
+                            <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${done} != null">
+                                <div th:text="${done}"></div>
+                            </div>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${error} != null">
+                                <div th:text="${error}"></div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </div>   
+                        <h1 class="lines-effect">Book</h1>
+                        <div th:if="${books.isEmpty()}" class="container-mge">
+                            <h3>No hay libros cargados</h3>
+                        </div>
+                        <div class="bt-add"> <a class="btn btn-success btn-lg" th:href="@{/book/create}">Add book</a> </div>
+                        <div class="table" th:unless="${books.isEmpty()}">
+                            <table class="table table-bordered table-dark">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ISBN</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Publication Date</th>
+                                        <th scope="col">Number of copies</th>
+                                        <th scope="col">Borrowed copies</th>
+                                        <th scope="col">Remained copies</th>
+                                        <th scope="col">Author</th>
+                                        <th scope="col">Editorial</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="book:${books}">
+                                        <th th:text="${book.isbn}"></th>
+                                        <td th:text="${book.title}"></td>
+                                        <td th:text="${book.pubDate}"></td>
+                                        <td th:text="${book.example}"></td>
+                                        <td th:text="${book.exampleBorrow}"></td>
+                                        <td th:text="${book.exampleRemain}"></td>
+                                        <td th:text="${book.author.name}"></td>
+                                        <td th:text="${book.editorial.name}"></td>
+                                        <td>
+                                            <a th:if="${book.register}" th:href="@{/book/unsubscribe/__${book.id}__}" class="btn btn-danger" th:text="Unsubscribe"></a>                                   
+                                            <a th:unless="${book.register}" th:href="@{/book/subscribe/__${book.id}__}" class="btn btn-success" th:text="Subscribed"></a>
+                                        </td> 
+                                        <td><a class="btn btn-light" th:href="@{/book/modify/__${book.id}__}">Edit</a></td>
+                                        <td><a class="btn btn-danger" th:href="@{/book/delete/__${book.id}__}">Delete</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <footer th:replace="Fragment.html :: footer"></footer>
+                        <script
+                            src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+                            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+                            crossorigin="anonymous"
+                        ></script>
+                        <script
+                            src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+                            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+                            crossorigin="anonymous"
+                        ></script>
+                    </body>
+                    </html>
